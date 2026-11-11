@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-orders-service
+  labels:
+    app.kubernetes.io/name: sample-orders-service
+    backstage.io/kubernetes-id: sample-orders-service
+  annotations:
+    # AWS Load Balancer Controller: an internal Application Load Balancer
+    # that sends traffic straight to the pods.
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+spec:
+  ingressClassName: alb
+  rules:
+    # Replace with the host name the service is published under.
+    - host: sample-orders-service.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sample-orders-service
+                port:
+                  name: http

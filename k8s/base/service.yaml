@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-orders-service
+  labels:
+    app.kubernetes.io/name: sample-orders-service
+    backstage.io/kubernetes-id: sample-orders-service
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: sample-orders-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP

@@ -1,0 +1,9 @@
+site_name: sample-orders-service
+site_description: "Order processing microservice of the sample team: it's the \"orders\" domain"
+
+nav:
+  - Home: index.md
+
+plugins:
+  - techdocs-core
+  - d2

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-orders-service-config
+  labels:
+    app.kubernetes.io/name: sample-orders-service
+    backstage.io/kubernetes-id: sample-orders-service
+data:
+  # Returned by GET / of the service.
+  ENVIRONMENT: production
+  LOG_LEVEL: info
+  OTEL_SERVICE_NAME: sample-orders-service

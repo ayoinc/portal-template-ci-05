@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sample-orders-service
+  description: "Order processing microservice of the sample team: it's the \"orders\" domain"
+  annotations:
+    github.com/project-slug: example-org/sample-orders-service
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: sample-orders-service
+  tags:
+    - microservice
+    - kubernetes
+    - nodejs
+  links:
+    - url: https://github.com/example-org/sample-orders-service/actions
+      title: CI/CD Pipeline
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/platform-team
+  providesApis:
+    - sample-orders-service-api
+  dependsOn:
+    - resource:sample-orders-service-database
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: sample-orders-service-api
+  description: HTTP API of sample-orders-service
+  annotations:
+    github.com/project-slug: example-org/sample-orders-service
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: group:default/platform-team
+  definition:
+    $text: ./api-spec.yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sample-orders-service-database
+  description: Database of sample-orders-service (postgresql)
+spec:
+  type: database
+  owner: group:default/platform-team

@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sample-orders-service
+  labels:
+    app.kubernetes.io/name: sample-orders-service
+    backstage.io/kubernetes-id: sample-orders-service
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: sample-orders-service
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Only the HTTP port is reachable.
+    - ports:
+        - protocol: TCP
+          port: 8080
+  egress:
+    # DNS
+    - ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # HTTPS
+    - ports:
+        - protocol: TCP
+          port: 443
+    # Database (postgresql)
+    - ports:
+        - protocol: TCP
+          port: 5432
+    # OpenTelemetry collector (OTLP over gRPC and HTTP)
+    - ports:
+        - protocol: TCP
+          port: 4317
+        - protocol: TCP
+          port: 4318

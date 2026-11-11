@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sample-orders-service
+  labels:
+    app.kubernetes.io/name: sample-orders-service
+    backstage.io/kubernetes-id: sample-orders-service
+spec:
+  # Node drains take down one pod at a time.
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: sample-orders-service

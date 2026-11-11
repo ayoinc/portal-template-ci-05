@@ -1,0 +1,14 @@
+{
+  "name": "sample-orders-service",
+  "version": "1.0.0",
+  "description": "Order processing microservice of the sample team: it's the \"orders\" domain",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
